@@ -4,20 +4,16 @@
         <transition name="slide-fade" mode="out-in">
             <router-view></router-view>
         </transition>
-        <img alt="Vue logo" src="./assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
     </div>
 </template>
 
 <script>
     import Header from "./components/Header";
-    import HelloWorld from './components/HelloWorld.vue'
 
     export default {
         name: 'app',
         components: {
             appHeader : Header,
-            HelloWorld
         }
     }
 </script>
@@ -30,7 +26,7 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
-    },
+    }
     .slide-fade-enter-active {
         transition: all .2s ease;
     }
