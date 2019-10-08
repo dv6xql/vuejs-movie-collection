@@ -30,7 +30,7 @@ export const routes = [
         name: 'movies'
     },
     {
-        path: '/movies/:movie_id',
+        path: '/movies/:movieId',
         component: MovieDetails,
         name: 'movieDetails'
     },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Movie details ID: {{ movie_id }}</h1>
+        <h1>Movie details ID: {{ movie.id }} {{ movie.title }}</h1>
         <hr>
         <button @click="navigateToMovies()">Back to Movies</button>
     </div>
@@ -11,12 +11,12 @@
         name: "MovieDetails",
         data() {
             return {
-                movie_id: this.$route.params.movie_id
+                movie: this.$route.params.movie
             }
         },
         watch: {
             '$route'(to) {
-                this.movie_id = to.params.id;
+                this.movie = to.params.movie.id;
             }
         },
         methods: {
