@@ -21,7 +21,7 @@
         },
         methods: {
             navigateToMovies() {
-                this.$router.push('/movies')
+                this.$router.push({name: 'movies'})
             }
         }
     }

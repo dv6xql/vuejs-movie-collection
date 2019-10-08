@@ -6,18 +6,22 @@ import Movies from "./components/Movies"
 export const routes = [
     {
         path: '',
-        component: Home
+        component: Home,
+        name: 'home'
     },
     {
         path: '/movies',
         component: Movies,
+        name: 'movies'
     },
     {
         path: '/movies/:movie_id',
-        component: MovieDetails
+        component: MovieDetails,
+        name: 'movieDetails'
     },
     {
         path: '/stats',
-        component: Stats
+        component: Stats,
+        name: 'stats'
     }
 ];

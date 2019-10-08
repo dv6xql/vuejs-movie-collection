@@ -1,9 +1,9 @@
 <template>
     <div>
         <ul>
-            <router-link to="/" tag="li" active-class="active" exact><a>Home</a></router-link>
-            <router-link to="/movies" tag="li" active-class="active"><a>Movies</a></router-link>
-            <router-link to="/stats" tag="li" active-class="active"><a>Stats</a></router-link>
+            <router-link :to="{name: 'home'}" tag="li" active-class="active" exact><a>Home</a></router-link>
+            <router-link :to="{name: 'movies'}" tag="li" active-class="active"><a>Movies</a></router-link>
+            <router-link :to="{name: 'stats'}" tag="li" active-class="active"><a>Stats</a></router-link>
         </ul>
     </div>
 </template>
