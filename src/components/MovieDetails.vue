@@ -1,7 +1,8 @@
 <template>
     <div>
-        <h1>Movie details {{ movie_id }}</h1>
-        <button @click="navigateToHome()">Back to Home</button>
+        <h1>Movie details ID: {{ movie_id }}</h1>
+        <hr>
+        <button @click="navigateToMovies()">Back to Movies</button>
     </div>
 </template>
 
@@ -19,8 +20,8 @@
             }
         },
         methods: {
-            navigateToHome() {
-                this.$router.push('/')
+            navigateToMovies() {
+                this.$router.push('/movies')
             }
         }
     }
