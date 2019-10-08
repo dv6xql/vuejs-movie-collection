@@ -1,12 +1,8 @@
 <template>
     <div>
         <ul>
-            <li>
-                <router-link to="/">Home</router-link>
-            </li>
-            <li>
-                <router-link to="/stats">Stats</router-link>
-            </li>
+            <router-link to="/" tag="li" active-class="active" exact><a>Home</a></router-link>
+            <router-link to="/stats" tag="li" active-class="active"><a>Stats</a></router-link>
         </ul>
     </div>
 </template>
