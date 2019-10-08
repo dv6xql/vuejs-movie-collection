@@ -1,7 +1,22 @@
 import Home from './components/Home'
-import Stats from "./components/Stats";
-import MovieDetails from "./components/MovieDetails";
-import Movies from "./components/Movies"
+
+const Movies = resolve => {
+    require.ensure(['./components/Movies.vue'], () => {
+        resolve(require('./components/Movies.vue'));
+    })
+};
+
+const MovieDetails = resolve => {
+    require.ensure(['./components/MovieDetails.vue'], () => {
+        resolve(require('./components/MovieDetails.vue'));
+    })
+};
+
+const Stats = resolve => {
+    require.ensure(['./components/Stats.vue'], () => {
+        resolve(require('./components/Stats.vue'));
+    })
+};
 
 export const routes = [
     {
