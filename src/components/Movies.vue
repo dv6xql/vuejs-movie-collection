@@ -16,6 +16,7 @@
         name: "Movies",
         methods: {
             ...mapActions([
+                'getMovies',
                 'storeMovies'
             ])
         },
@@ -23,6 +24,9 @@
             ...mapGetters([
                 'movies'
             ])
+        },
+        created() {
+            this.getMovies();
         }
     }
 </script>
