@@ -23,5 +23,9 @@ export const routes = [
         path: '/stats',
         component: Stats,
         name: 'stats'
+    },
+    {
+        path: '*',
+        redirect: '/'
     }
 ];
