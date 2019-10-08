@@ -3,7 +3,7 @@
         <h1>Movies</h1>
         <ul>
             <li v-for="movie in movies" :key="`movie-${movie.id}`">
-                <router-link :to="{name: 'movieDetails', params: {movieId: movie.id, movie: movie}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
+                <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
             </li>
         </ul>
     </div>
