@@ -10,8 +10,14 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex';
     export default {
-        name: "Movies"
+        name: "Movies",
+        computed: {
+            ...mapGetters([
+                'movies'
+            ])
+        }
     }
 </script>
 
