@@ -11,5 +11,15 @@ export const store = new Vuex.Store({
         movies: state => {
             return state.movies;
         }
+    },
+    mutations: {
+        storeMovies: (state, movies) => {
+            state.movies = movies;
+        }
+    },
+    actions: {
+        storeMovies: ({ commit }, movies) => {
+            commit('storeMovies', movies);
+        }
     }
 });

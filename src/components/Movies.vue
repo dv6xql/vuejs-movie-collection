@@ -11,8 +11,14 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import { mapActions } from 'vuex';
     export default {
         name: "Movies",
+        methods: {
+            ...mapActions([
+                'storeMovies'
+            ])
+        },
         computed: {
             ...mapGetters([
                 'movies'
