@@ -57,6 +57,7 @@
         watch: {
             '$route'(to) {
                 this.movieId = to.params.movieId;
+                this.getMovieDetails(this.movieId);
             },
             currentMovie() {
                 this.getSimilarMovies();
