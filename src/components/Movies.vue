@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Movies</h1>
+        <select v-model="sortBy" @change="getMovies(sortBy)">
+            <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
+        </select>
         <ul>
             <li v-for="movie in movies" :key="`movie-${movie.id}`">
                 <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
@@ -14,6 +17,11 @@
     import { mapActions } from 'vuex';
     export default {
         name: "Movies",
+        data() {
+            return {
+                sortBy: 'popularity.desc'
+            }
+        },
         methods: {
             ...mapActions([
                 'getMovies',
@@ -22,7 +30,8 @@
         },
         computed: {
             ...mapGetters([
-                'movies'
+                'movies',
+                'sortByOptions'
             ])
         },
         created() {
