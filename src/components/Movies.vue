@@ -2,17 +2,14 @@
     <section>
         <header class="title">
             <h2>Movies</h2>
-            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy, 'page': 1})">
+            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy, 'page': 1})" v-if="!search">
                 <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
             </select>
         </header>
         <div class="content">
-            <input type="text" v-model="search" @keyup.enter="searchMovies(search)" placeholder="What are you looking for?">
-            <ul>
-                <li v-for="movie in foundMovies" :key="`found-movie-${movie.id}`">
-                    <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
-                </li>
-            </ul>
+            <div class="instant-search mb-2">
+                <input type="text" v-model="search" @keyup.enter="searchMovies(search)" placeholder="What are you looking for?">
+            </div>
         </div>
         <div class="movies">
             <article v-for="movie in movies.results" :key="`movie-${movie.id}`">
@@ -28,7 +25,7 @@
                 </ul>
             </article>
         </div>
-        <div class="content">
+        <div class="content" v-if="!search">
             <ul class="pagination">
                 <li>
                     <button class="button" :class="{'disabled': currentPage <= 1}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage - 1})" :disabled="currentPage <= 1">Previous</button>
@@ -61,6 +58,15 @@
                 'storeMovies',
                 'searchMovies'
             ])
+        },
+        watch: {
+            search(to, from) {
+                if (!to) {
+                    this.getMovies({'sortBy': this.sortBy, 'page': 1})
+                } else {
+                    this.searchMovies(this.search);
+                }
+            }
         },
         computed: {
             ...mapGetters([

@@ -96,7 +96,10 @@ const actions = {
         state.foundMovies = [];
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${state.apiKey}&query=${query}`)
             .then(response => {
-                commit('storeFoundMovies', response.data.results);
+                commit('storeMovies', response.data);
+                commit('storeCurrentPage', 1);
+                commit('storeTotalPages', 1);
+                state.searchInProgress = false;
             });
     }
 };
