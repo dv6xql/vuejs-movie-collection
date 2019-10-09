@@ -6,12 +6,9 @@ const state = {
     apiKey: 'f5113d82bf25e774efd85825b36c9f09',
     foundMovies: [],
     sortByOptions: {
-        'popularity.desc': 'Most Popular Movies DESC',
-        'popularity.asc': 'Most Popular Movies ASC',
-        'vote_average.desc': 'Highest Rated DESC',
-        'vote_average.asc': 'Highest Rated ASC',
-        'revenue.desc': 'Highest Grossing DESC',
-        'revenue.asc': 'Highest Grossing ASC'
+        'popularity.desc': 'Most Popular',
+        'vote_average.desc': 'Highest Rated',
+        'revenue.desc': 'Highest Grossing',
     },
     searchInProgress: false,
     currentPage: 1,

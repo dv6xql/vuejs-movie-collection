@@ -2,10 +2,17 @@
     <section>
         <header class="title">
             <h2>Movies</h2>
-            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy, 'page': 1})" v-if="!search">
-                <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
-            </select>
         </header>
+        <div class="content">
+            <ul class="actions">
+                <li v-for="(option, key) in sortByOptions">
+                    <button type="button" class="button small" :class="{'primary': sortBy === key}" @click.prevent="sortBy = key; getMovies({'sortBy': key, 'page': 1})" :disabled="search.length >= 1">{{ option }}</button>
+                </li>
+            </ul>
+            <p>
+
+            </p>
+        </div>
         <div class="content">
             <div class="instant-search mb-2">
                 <input type="text" v-model="search" @keyup.enter="searchMovies(search)" placeholder="What are you looking for?">
