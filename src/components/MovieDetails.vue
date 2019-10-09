@@ -5,7 +5,11 @@
                 <h1>
                     {{ currentMovie.title }}
                     <div class="rating">
-                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                        <span @click="setRate(5)" :class="{'active': userRating >= 5}">☆</span>
+                        <span @click="setRate(4)" :class="{'active': userRating >= 4}">☆</span>
+                        <span @click="setRate(3)" :class="{'active': userRating >= 3}">☆</span>
+                        <span @click="setRate(2)" :class="{'active': userRating >= 2}">☆</span>
+                        <span @click="setRate(1)" :class="{'active': userRating >= 1}">☆</span>
                     </div>
                 </h1>
                 <div class="box alt" v-if="currentMovie.poster_path">
@@ -60,17 +64,20 @@
         data() {
             return {
                 movieId: this.$route.params.movieId,
-                similarMovies: []
+                similarMovies: [],
+                userRating: 0
             }
         },
         watch: {
             '$route'(to) {
                 this.movieId = to.params.movieId;
                 this.getMovieDetails(this.movieId);
+                this.getRate();
             },
             currentMovie() {
                 this.getSimilarMovies();
-            }
+                this.getRate();
+            },
         },
         methods: {
             ...mapActions([
@@ -93,6 +100,13 @@
                             });
                     });
             },
+            setRate(userRating) {
+                this.userRating = userRating;
+                localStorage.setItem(`movie_${this.currentMovie.id}_rate`, userRating);
+            },
+            getRate() {
+                this.userRating = localStorage.getItem(`movie_${this.currentMovie.id}_rate`);
+            }
         },
         computed: {
             ...mapGetters([
