@@ -13,7 +13,9 @@ const state = {
         'revenue.desc': 'Highest Grossing DESC',
         'revenue.asc': 'Highest Grossing ASC'
     },
-    searchInProgress: false
+    searchInProgress: false,
+    currentPage: 1,
+    totalPages: 1
 };
 
 const getters = {
@@ -28,6 +30,12 @@ const getters = {
     },
     sortByOptions: state => {
         return state.sortByOptions;
+    },
+    currentPage: state => {
+        return state.currentPage;
+    },
+    totalPages: state => {
+        return state.totalPages;
     }
 };
 
@@ -41,18 +49,32 @@ const mutations = {
     storeFoundMovies: (state, foundMovies) => {
         state.foundMovies = foundMovies;
         state.searchInProgress = false;
+    },
+    storeCurrentPage: (state, currentPage) => {
+        state.currentPage = currentPage;
+    },
+    storeTotalPages: (state, totalPages) => {
+        state.totalPages = totalPages;
     }
 };
 
 const actions = {
-    getMovies: ({state, commit}, sortBy = null) => {
-        if (!sortBy) {
-            sortBy = 'popularity.desc';
+    getMovies: ({state, commit}, data) => {
+        let sortBy = 'popularity.desc';
+        if (data.sortBy) {
+            sortBy = data.sortBy;
         }
 
-        axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=${sortBy}&api_key=${state.apiKey}`)
+        let page = state.currentPage;
+        if (data.page) {
+            page = data.page;
+        }
+
+        axios.get(`https://api.themoviedb.org/3/discover/movie?sort_by=${sortBy}&page=${page}&api_key=${state.apiKey}`)
             .then(response => {
-                commit('storeMovies', response.data.results);
+                commit('storeMovies', response.data);
+                commit('storeCurrentPage', response.data.page);
+                commit('storeTotalPages', response.data.total_pages);
             });
     },
     getMovieDetails: ({state, commit}, movieId) => {

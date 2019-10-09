@@ -2,7 +2,7 @@
     <section>
         <header class="title">
             <h2>Movies</h2>
-            <select v-model="sortBy" @change="getMovies(sortBy)">
+            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy})">
                 <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
             </select>
         </header>
@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="movies">
-            <article v-for="movie in movies" :key="`movie-${movie.id}`">
+            <article v-for="movie in movies.results" :key="`movie-${movie.id}`">
                 <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
                     <a href="#" class="image">
                         <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="movie.title" />
@@ -30,15 +30,15 @@
         </div>
         <div class="content">
             <ul class="pagination">
-                <li><span class="button disabled">Prev</span></li>
-                <li><a href="#" class="page active">1</a></li>
-                <li><a href="#" class="page">2</a></li>
-                <li><a href="#" class="page">3</a></li>
-                <li><span>&hellip;</span></li>
-                <li><a href="#" class="page">8</a></li>
-                <li><a href="#" class="page">9</a></li>
-                <li><a href="#" class="page">10</a></li>
-                <li><a href="#" class="button">Next</a></li>
+                <li>
+                    <button class="button" :class="{'disabled': currentPage <= 1}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage - 1})" :disabled="currentPage <= 1">Previous</button>
+                </li>
+                <li v-for="page in pages">
+                    <a href="#" class="page" :class="{'active': page === currentPage}" @click.prevent="getMovies({'sortBy': sortBy, 'page': page})">{{ page }}</a>
+                </li>
+                <li>
+                    <button class="button" :class="{'disabled': currentPage + 1 >= totalPages}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage + 1})" :disabled="currentPage + 1 >= totalPages">Next</button>
+                </li>
             </ul>
         </div>
     </section>
@@ -66,11 +66,26 @@
             ...mapGetters([
                 'movies',
                 'sortByOptions',
-                'foundMovies'
-            ])
+                'foundMovies',
+                'currentPage',
+                'totalPages'
+            ]),
+            pages() {
+                let array = Array.from(Array(this.totalPages).keys()).map(i => i + 1);
+                let currentIndex = array.findIndex((item) => {
+                    return item === this.currentPage;
+                });
+                if (currentIndex < 3) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex -= 2;
+                }
+
+                return array.slice(currentIndex, currentIndex + 6);
+            }
         },
         created() {
-            this.getMovies();
+            this.getMovies({'sortBy': this.sortBy});
         }
     }
 </script>
