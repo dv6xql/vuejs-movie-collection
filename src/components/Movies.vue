@@ -1,12 +1,51 @@
 <template>
-    <div>
-        <h1>Movies</h1>
-        <ul>
-            <li v-for="movie in movies" :key="`movie-${movie.id}`">
-                <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
-            </li>
-        </ul>
-    </div>
+    <section>
+        <header class="title">
+            <h2>Movies</h2>
+        </header>
+        <div class="content">
+            <ul class="actions">
+                <li v-for="(option, key) in sortByOptions">
+                    <button type="button" class="button small" :class="{'primary': sortBy === key}" @click.prevent="sortBy = key; getMovies({'sortBy': key, 'page': 1})" :disabled="search.length >= 1">{{ option }}</button>
+                </li>
+            </ul>
+            <p>
+
+            </p>
+        </div>
+        <div class="content">
+            <div class="instant-search mb-2">
+                <input type="text" v-model="search" @keyup.enter="searchMovies(search)" placeholder="What are you looking for?">
+            </div>
+        </div>
+        <div class="movies">
+            <article v-for="movie in movies.results" :key="`movie-${movie.id}`">
+                <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
+                    <a href="#" class="image">
+                        <img :src="movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : '/no-image.png'" :alt="movie.title" />
+                    </a>
+                </router-link>
+                <h3>{{ movie.title }}</h3>
+                <p>{{ movie.overview }}</p>
+                <ul class="actions">
+                    <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" exact><a class="button">Details</a></router-link>
+                </ul>
+            </article>
+        </div>
+        <div class="content" v-if="!search">
+            <ul class="pagination">
+                <li>
+                    <button class="button" :class="{'disabled': currentPage <= 1}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage - 1})" :disabled="currentPage <= 1">Previous</button>
+                </li>
+                <li v-for="page in pages">
+                    <a href="#" class="page" :class="{'active': page === currentPage}" @click.prevent="getMovies({'sortBy': sortBy, 'page': page})">{{ page }}</a>
+                </li>
+                <li>
+                    <button class="button" :class="{'disabled': currentPage + 1 >= totalPages}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage + 1})" :disabled="currentPage + 1 >= totalPages">Next</button>
+                </li>
+            </ul>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -14,19 +53,52 @@
     import { mapActions } from 'vuex';
     export default {
         name: "Movies",
+        data() {
+            return {
+                sortBy: 'popularity.desc',
+                search: ''
+            }
+        },
         methods: {
             ...mapActions([
                 'getMovies',
-                'storeMovies'
+                'storeMovies',
+                'searchMovies'
             ])
+        },
+        watch: {
+            search(to, from) {
+                if (!to) {
+                    this.getMovies({'sortBy': this.sortBy, 'page': 1})
+                } else {
+                    this.searchMovies(this.search);
+                }
+            }
         },
         computed: {
             ...mapGetters([
-                'movies'
-            ])
+                'movies',
+                'sortByOptions',
+                'foundMovies',
+                'currentPage',
+                'totalPages'
+            ]),
+            pages() {
+                let array = Array.from(Array(this.totalPages).keys()).map(i => i + 1);
+                let currentIndex = array.findIndex((item) => {
+                    return item === this.currentPage;
+                });
+                if (currentIndex < 3) {
+                    currentIndex = 0;
+                } else {
+                    currentIndex -= 2;
+                }
+
+                return array.slice(currentIndex, currentIndex + 6);
+            }
         },
         created() {
-            this.getMovies();
+            this.getMovies({'sortBy': this.sortBy});
         }
     }
 </script>

@@ -1,9 +1,15 @@
 <template>
     <div id="app">
-        <app-header></app-header>
-        <transition name="slide-fade" mode="out-in">
-            <router-view></router-view>
-        </transition>
+        <div id="wrapper">
+            <div id="main">
+                <div class="inner">
+                    <app-header></app-header>
+                    <transition name="slide-fade" mode="out-in">
+                        <router-view></router-view>
+                    </transition>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -19,14 +25,6 @@
 </script>
 
 <style>
-    #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
-        color: #2c3e50;
-        margin-top: 60px;
-    }
     .slide-fade-enter-active {
         transition: all .2s ease;
     }
