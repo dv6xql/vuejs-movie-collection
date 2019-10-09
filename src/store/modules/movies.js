@@ -12,7 +12,8 @@ const state = {
         'vote_average.asc': 'Highest Rated ASC',
         'revenue.desc': 'Highest Grossing DESC',
         'revenue.asc': 'Highest Grossing ASC'
-    }
+    },
+    searchInProgress: false
 };
 
 const getters = {
@@ -39,6 +40,7 @@ const mutations = {
     },
     storeFoundMovies: (state, foundMovies) => {
         state.foundMovies = foundMovies;
+        state.searchInProgress = false;
     }
 };
 
@@ -64,6 +66,11 @@ const actions = {
         commit('storeMovies', movies);
     },
     searchMovies: ({state, commit}, query) => {
+        if (state.searchInProgress) {
+            return false;
+        }
+   
+        state.searchInProgress = true;
         state.foundMovies = [];
         axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${state.apiKey}&query=${query}`)
             .then(response => {

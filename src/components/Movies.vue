@@ -4,6 +4,13 @@
         <select v-model="sortBy" @change="getMovies(sortBy)">
             <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
         </select>
+        <input type="text" v-model="search" @keyup.enter="searchMovies(search)">
+        <ul>
+            <li v-for="movie in foundMovies" :key="`found-movie-${movie.id}`">
+                <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
+            </li>
+        </ul>
+        <hr>
         <ul>
             <li v-for="movie in movies" :key="`movie-${movie.id}`">
                 <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" active-class="active" exact><a>{{ movie.title }}</a></router-link>
@@ -19,19 +26,22 @@
         name: "Movies",
         data() {
             return {
-                sortBy: 'popularity.desc'
+                sortBy: 'popularity.desc',
+                search: ''
             }
         },
         methods: {
             ...mapActions([
                 'getMovies',
-                'storeMovies'
+                'storeMovies',
+                'searchMovies'
             ])
         },
         computed: {
             ...mapGetters([
                 'movies',
-                'sortByOptions'
+                'sortByOptions',
+                'foundMovies'
             ])
         },
         created() {
