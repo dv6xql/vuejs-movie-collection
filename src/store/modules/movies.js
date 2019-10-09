@@ -16,6 +16,9 @@ const state = {
 };
 
 const getters = {
+    apiKey: state => {
+        return state.apiKey;
+    },
     movies: state => {
         return state.movies;
     },
