@@ -18,7 +18,7 @@
             <article v-for="movie in movies.results" :key="`movie-${movie.id}`">
                 <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
                     <a href="#" class="image">
-                        <img :src="`https://image.tmdb.org/t/p/original/${movie.poster_path}`" :alt="movie.title" />
+                        <img :src="movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : '/no-image.png'" :alt="movie.title" />
                     </a>
                 </router-link>
                 <h3>{{ movie.title }}</h3>
