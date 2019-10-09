@@ -1,17 +1,14 @@
 <template>
     <section>
-        <header class="title">
+        <div class="title">
             <h2>Movies</h2>
-        </header>
+        </div>
         <div class="content">
             <ul class="actions">
                 <li v-for="(option, key) in sortByOptions" :key="`sort-by-${key}`">
                     <button type="button" class="button small" :class="{'primary': sortBy === key}" @click.prevent="sortBy = key; getMovies({'sortBy': key, 'page': 1})" :disabled="search.length >= 1">{{ option }}</button>
                 </li>
             </ul>
-            <p>
-
-            </p>
         </div>
         <div class="content">
             <div class="instant-search mb-2">

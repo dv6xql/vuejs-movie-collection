@@ -1788,7 +1788,7 @@ header p {
   text-transform: uppercase;
 }
 
-header.title > :last-child {
+div.title > :last-child {
   border-bottom: solid 3px #f56a6a;
   display: inline-block;
   margin: 0 0 2em 0;
