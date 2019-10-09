@@ -26,8 +26,8 @@
                 <ul class="alt">
                     <li><strong>Original Title:</strong> {{ currentMovie.original_title }}</li>
                     <li><strong>Release Date:</strong> {{ currentMovie.release_date }}</li>
-                    <li><strong>Language:</strong> <span v-for="language in currentMovie.spoken_languages"> {{ language.name }} </span></li>
-                    <li><strong>Genres:</strong> <span v-for="genre in currentMovie.genres"> {{ genre.name }} </span></li>
+                    <li><strong>Language:</strong> <span v-for="language in currentMovie.spoken_languages" :key="`language-${language.name}`"> {{ language.name }} </span></li>
+                    <li><strong>Genres:</strong> <span v-for="genre in currentMovie.genres" :key="`genre-${genre.name}`"> {{ genre.name }} </span></li>
                     <li><strong>Runtime:</strong> {{ currentMovie.runtime }} minutes</li>
                     <li><strong>Status:</strong> {{ currentMovie.status }}</li>
                 </ul>
@@ -57,10 +57,8 @@
     import { mapGetters } from 'vuex';
     import { mapActions } from 'vuex';
     import axios from 'axios';
-    import Header from "./Header";
     export default {
         name: "MovieDetails",
-        components: {Header},
         data() {
             return {
                 movieId: this.$route.params.movieId,
