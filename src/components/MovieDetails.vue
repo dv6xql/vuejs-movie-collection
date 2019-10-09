@@ -3,6 +3,11 @@
         <div class="content">
             <header>
                 <h1>{{ currentMovie.title }}</h1>
+                <div class="box alt" v-if="currentMovie.poster_path">
+                    <div class="row gtr-50 gtr-uniform">
+                        <div class="col-2"><span class="image fit"><img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'" :alt="currentMovie.title" /></span></div>
+                    </div>
+                </div>
                 <p>{{ currentMovie.overview }}</p>
             </header>
             <header class="title">
@@ -35,9 +40,6 @@
                     </ul>
                 </article>
             </div>
-            <ul class="actions">
-                <li><a href="#" class="button big" @click="navigateToMovies()">Back to Movies</a></li>
-            </ul>
         </div>
     </section>
 </template>
@@ -84,9 +86,6 @@
                             });
                     });
             },
-            navigateToMovies() {
-                this.$router.push({name: 'movies'})
-            }
         },
         computed: {
             ...mapGetters([
