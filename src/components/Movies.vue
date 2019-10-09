@@ -2,7 +2,7 @@
     <section>
         <header class="title">
             <h2>Movies</h2>
-            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy})">
+            <select v-model="sortBy" @change="getMovies({'sortBy': sortBy, 'page': 1})">
                 <option :value="key" v-for="(option, key) in sortByOptions">{{ option }}</option>
             </select>
         </header>
