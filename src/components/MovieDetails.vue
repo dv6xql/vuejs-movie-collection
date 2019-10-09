@@ -2,7 +2,12 @@
     <section>
         <div class="content">
             <header>
-                <h1>{{ currentMovie.title }}</h1>
+                <h1>
+                    {{ currentMovie.title }}
+                    <div class="rating">
+                        <span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    </div>
+                </h1>
                 <div class="box alt" v-if="currentMovie.poster_path">
                     <div class="row gtr-50 gtr-uniform">
                         <div class="col-2"><span class="image fit"><img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'" :alt="currentMovie.title" /></span></div>
@@ -48,8 +53,10 @@
     import { mapGetters } from 'vuex';
     import { mapActions } from 'vuex';
     import axios from 'axios';
+    import Header from "./Header";
     export default {
         name: "MovieDetails",
+        components: {Header},
         data() {
             return {
                 movieId: this.$route.params.movieId,
