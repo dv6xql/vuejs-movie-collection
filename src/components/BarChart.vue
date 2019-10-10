@@ -1,5 +1,6 @@
 <template>
     <div :id="id">
+        <h2>{{ title }}</h2>
         <svg :width="svgWidth" :height="svgHeight">
             <g>
                 <rect v-for="(item, index) in data"
