@@ -3,7 +3,7 @@
         <div class="title">
             <h2>Stats</h2>
         </div>
-        <div class="movies" v-if="Object.keys(topRatedData).length">
+        <div class="movies align-center" v-if="Object.keys(topRatedData).length">
             <article>
                 <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average" :data="topRatedData"></BarChart>
             </article>
