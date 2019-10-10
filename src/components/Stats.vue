@@ -4,8 +4,8 @@
             <h2>Stats</h2>
         </div>
         <div class="movies">
-            <article>
-                <BarChart id="chart_1" title="Bar Chart" xKey="name" yKey="amount" :data="barChartData"></BarChart>
+            <article v-if="Object.keys(topRatedData).length">
+                <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average" :data="topRatedData"></BarChart>
             </article>
             <article>
                 <BarChart id="chart_2" title="Bar Charts" xKey="name" yKey="amount" :data="barChartDatas"></BarChart>
@@ -16,13 +16,25 @@
 
 <script>
     import BarChart from "./BarChart";
+    import { mapGetters } from 'vuex';
+    import { mapActions } from 'vuex';
     export default {
         name: "Stats",
         components: {
             BarChart
         },
+        watch: {
+            topRatedMovies(to) {
+                if (!Object.keys(to).length) {
+                    return false;
+                }
+
+                this.topRatedData = (to.results).slice(0, 10);
+            }
+        },
         data() {
             return {
+                topRatedData: [],
                 barChartData: [
                     {
                         name: 'Matrix',
@@ -60,7 +72,25 @@
                     },
                 ]
             }
+        },
+        methods: {
+            ...mapActions([
+                'getTopRatedMovies',
+            ]),
+            collectTopRatedMoviesData(movies) {
+                movies = movies.slice(0, 10);
+                console.log(movies);
+            }
+        },
+        computed: {
+            ...mapGetters([
+                'topRatedMovies',
+            ]),
+        },
+        created() {
+            this.getTopRatedMovies();
         }
+
     }
 </script>
 
