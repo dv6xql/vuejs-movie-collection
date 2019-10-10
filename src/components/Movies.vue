@@ -38,7 +38,7 @@
                     <a href="#" class="page" :class="{'active': page === currentPage}" @click.prevent="getMovies({'sortBy': sortBy, 'page': page})">{{ page }}</a>
                 </li>
                 <li>
-                    <button class="button" :class="{'disabled': currentPage + 1 >= totalPages}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage + 1})" :disabled="currentPage + 1 >= totalPages">Next</button>
+                    <button class="button" :class="{'disabled': currentPage + 1 >= totalPages}" @click.prevent="scrollToTop(); getMovies({'sortBy': sortBy, 'page': currentPage + 1})" :disabled="currentPage + 1 >= totalPages">Next</button>
                 </li>
             </ul>
         </div>
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+    import VueScrollTo from 'vue-scrollto';
     import { mapGetters } from 'vuex';
     import { mapActions } from 'vuex';
     export default {
@@ -61,7 +62,12 @@
                 'getMovies',
                 'storeMovies',
                 'searchMovies'
-            ])
+            ]),
+            scrollToTop() {
+                setTimeout(() => {
+                    VueScrollTo.scrollTo('.title', 500, {easing: 'ease-in'});
+                }, 1000);
+            }
         },
         watch: {
             search(to) {
@@ -70,7 +76,7 @@
                 } else {
                     this.searchMovies(this.search);
                 }
-            }
+            },
         },
         computed: {
             ...mapGetters([
