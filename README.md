@@ -35,7 +35,14 @@ and buttons but is not expected to be used as a website layout design.
 
 # Up and running
 
-## Project setup
+1. Clone repository
+2. Go to project directory:
+   1. Setup project using command `npm install`
+3. Run server using command `npm run serve`. Project will be available on `http://127.0.0.1:8080`
+
+## All commands 
+
+### Project setup
 ```
 npm install
 ```
@@ -49,3 +56,16 @@ npm run serve
 ```
 npm run build
 ```
+
+### Compiles and minifies for dev
+```
+npm run dev
+```
+
+# Endpoints
+
+| Method | URI                                       | Description        |
+| ------ | ----------------------------------------- | ------------------ |
+| GET    | `movies`                                  | Show all movies    |
+| GET    | `movies/{movie}/details`                  | Show movie details |
+| GET    | `stats`                                   | Show stats         |
