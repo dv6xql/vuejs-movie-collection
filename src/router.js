@@ -20,20 +20,29 @@ export const routes = [
     {
         path: '/movies',
         component: Movies,
-        name: 'movies'
+        name: 'movies',
+        meta: {
+            title: 'Movies',
+        },
     },
     {
         path: '/movies/:movieId',
         component: MovieDetails,
-        name: 'movieDetails'
+        name: 'movieDetails',
+        meta: {
+            title: 'Movie Details',
+        },
     },
     {
         path: '/stats',
         component: Stats,
-        name: 'stats'
+        name: 'stats',
+        meta: {
+            title: 'Stats',
+        },
     },
     {
         path: '*',
-        redirect: '/movies'
+        redirect: '/movies',
     }
 ];
