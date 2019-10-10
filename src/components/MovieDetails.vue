@@ -19,9 +19,9 @@
                 </div>
                 <p>{{ currentMovie.overview }}</p>
             </header>
-            <header class="title">
+            <div class="title">
                 <h2>Details</h2>
-            </header>
+            </div>
             <div class="box">
                 <ul class="alt">
                     <li><strong>Original Title:</strong> {{ currentMovie.original_title }}</li>
@@ -32,9 +32,9 @@
                     <li><strong>Status:</strong> {{ currentMovie.status }}</li>
                 </ul>
             </div>
-            <header class="title" v-if="Object.keys(similarMovies).length">
+            <div class="title" v-if="Object.keys(similarMovies).length">
                 <h2>Similar movies</h2>
-            </header>
+            </div>
             <div class="movies" v-if="Object.keys(similarMovies).length">
                 <article v-for="movie in similarMovies" :key="`movie-${movie.id}`">
                     <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
@@ -57,10 +57,8 @@
     import { mapGetters } from 'vuex';
     import { mapActions } from 'vuex';
     import axios from 'axios';
-    import Header from "./Header";
     export default {
         name: "MovieDetails",
-        components: {Header},
         data() {
             return {
                 movieId: this.$route.params.movieId,
