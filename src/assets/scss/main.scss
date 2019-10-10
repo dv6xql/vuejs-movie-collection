@@ -7,7 +7,8 @@ html, body {
 }
 
 article, section {
-  display: block;}
+  display: block;
+}
 
 body {
   line-height: 1;
@@ -747,13 +748,13 @@ button:disabled,
 }
 
 #main > .inner {
-  padding: 0 6em 0.1em 6em ;
+  padding: 0 6em 0.1em 6em;
   margin: 0 auto;
   max-width: 110em;
 }
 
 #main > .inner > section {
-  padding: 6em 0 4em 0 ;
+  padding: 6em 0 4em 0;
   border-top: solid 2px rgba(210, 215, 217, 0.75);
 }
 
@@ -764,11 +765,11 @@ button:disabled,
 @media screen and (max-width: 1680px) {
 
   #main > .inner {
-    padding: 0 5em 0.1em 5em ;
+    padding: 0 5em 0.1em 5em;
   }
 
   #main > .inner > section {
-    padding: 5em 0 3em 0 ;
+    padding: 5em 0 3em 0;
   }
 
 }
@@ -776,11 +777,11 @@ button:disabled,
 @media screen and (max-width: 1280px) {
 
   #main > .inner {
-    padding: 0 4em 0.1em 4em ;
+    padding: 0 4em 0.1em 4em;
   }
 
   #main > .inner > section {
-    padding: 4em 0 2em 0 ;
+    padding: 4em 0 2em 0;
   }
 
 }
@@ -788,11 +789,11 @@ button:disabled,
 @media screen and (max-width: 736px) {
 
   #main > .inner {
-    padding: 0 2em 0.1em 2em ;
+    padding: 0 2em 0.1em 2em;
   }
 
   #main > .inner > section {
-    padding: 3em 0 1em 0 ;
+    padding: 3em 0 1em 0;
   }
 
 }
@@ -862,6 +863,7 @@ button:disabled,
   unicode-bidi: bidi-override;
   direction: rtl;
 }
+
 .rating > span:hover:before,
 .rating > span:hover ~ span:before {
   content: "\2605";
@@ -872,6 +874,7 @@ button:disabled,
   unicode-bidi: bidi-override;
   direction: rtl;
 }
+
 .rating > span {
   display: inline-block;
   position: relative;

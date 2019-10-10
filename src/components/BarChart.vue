@@ -2,14 +2,13 @@
     <div :id="id">
         <svg :width="svgWidth" :height="svgHeight">
             <g>
-                <rect
-                        v-for="(item, index) in data"
-                        :class="`${id} bar-${index + 1}`"
-                        :key="item[xKey]"
-                        :x="xScale(item[xKey])"
-                        :y="yScale(0)"
-                        :width="xScale.bandwidth()"
-                        :height="0">
+                <rect v-for="(item, index) in data"
+                      :class="`${id} bar-${index + 1}`"
+                      :key="item[xKey]"
+                      :x="xScale(item[xKey])"
+                      :y="yScale(0)"
+                      :width="xScale.bandwidth()"
+                      :height="0">
                 </rect>
             </g>
         </svg>
@@ -17,10 +16,11 @@
 </template>
 
 <script>
-    import { scaleLinear, scaleBand } from 'd3-scale';
-    import { max, min } from 'd3-array';
-    import { selectAll } from 'd3-selection';
-    import { transition } from 'd3-transition'
+    import {scaleLinear, scaleBand} from 'd3-scale';
+    import {max, min} from 'd3-array';
+    import {selectAll} from 'd3-selection';
+    import {transition} from 'd3-transition'
+
     export default {
         name: "BarChart",
         props: {
@@ -71,10 +71,7 @@
         data() {
             return {
                 svgWidth: 0,
-                redrawToggle: true,
-                colors: [
-
-                ]
+                redrawToggle: true
             }
         },
         methods: {
@@ -113,38 +110,47 @@
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-2 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-3 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-4 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-5 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-6 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-7 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-8 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-9 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
+
     .bar-10 {
         fill: #2196f3;
         transition: r 0.2s ease-in-out;

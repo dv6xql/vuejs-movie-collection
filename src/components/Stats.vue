@@ -5,10 +5,12 @@
         </div>
         <div class="items align-center" v-if="Object.keys(topRatedData).length">
             <article>
-                <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average" :data="topRatedData"></BarChart>
+                <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average"
+                          :data="topRatedData"></BarChart>
             </article>
             <article>
-                <BarChart id="chart_2" title="Bar Charts" xKey="title" yKey="vote_average_count" :data="topRatedData"></BarChart>
+                <BarChart id="chart_2" title="Bar Charts" xKey="title" yKey="vote_average_count"
+                          :data="topRatedData"></BarChart>
             </article>
         </div>
     </section>
@@ -16,8 +18,9 @@
 
 <script>
     import BarChart from "./BarChart";
-    import { mapGetters } from 'vuex';
-    import { mapActions } from 'vuex';
+    import {mapGetters} from 'vuex';
+    import {mapActions} from 'vuex';
+
     export default {
         name: "Stats",
         components: {

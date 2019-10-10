@@ -14,7 +14,8 @@
                 </h1>
                 <div class="box alt image-container" v-if="currentMovie.poster_path">
                     <div class="image fit">
-                        <img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'" :alt="currentMovie.title" />
+                        <img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'"
+                             :alt="currentMovie.title"/>
                     </div>
                 </div>
                 <p>{{ currentMovie.overview }}</p>
@@ -26,8 +27,11 @@
                 <ul class="alt">
                     <li><strong>Original Title:</strong> {{ currentMovie.original_title }}</li>
                     <li><strong>Release Date:</strong> {{ currentMovie.release_date }}</li>
-                    <li><strong>Language:</strong> <span v-for="language in currentMovie.spoken_languages" :key="`language-${language.name}`"> {{ language.name }} </span></li>
-                    <li><strong>Genres:</strong> <span v-for="genre in currentMovie.genres" :key="`genre-${genre.name}`"> {{ genre.name }} </span></li>
+                    <li><strong>Language:</strong> <span v-for="language in currentMovie.spoken_languages"
+                                                         :key="`language-${language.name}`"> {{ language.name }} </span>
+                    </li>
+                    <li><strong>Genres:</strong> <span v-for="genre in currentMovie.genres"
+                                                       :key="`genre-${genre.name}`"> {{ genre.name }} </span></li>
                     <li><strong>Runtime:</strong> {{ currentMovie.runtime }} minutes</li>
                     <li><strong>Status:</strong> {{ currentMovie.status }}</li>
                 </ul>
@@ -39,13 +43,15 @@
                 <article v-for="movie in similarMovies" :key="`movie-${movie.id}`">
                     <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
                         <a href="#" class="image">
-                            <img :src="movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : '/no-image.png'" :alt="movie.title" />
+                            <img :src="movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : '/no-image.png'"
+                                 :alt="movie.title"/>
                         </a>
                     </router-link>
                     <h3>{{ movie.title }}</h3>
                     <p>{{ movie.overview }}</p>
                     <ul class="actions">
-                        <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" exact><a class="button">Details</a></router-link>
+                        <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}" tag="li" exact><a
+                                class="button">Details</a></router-link>
                     </ul>
                 </article>
             </div>
@@ -54,9 +60,10 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex';
-    import { mapActions } from 'vuex';
+    import {mapGetters} from 'vuex';
+    import {mapActions} from 'vuex';
     import axios from 'axios';
+
     export default {
         name: "MovieDetails",
         data() {
