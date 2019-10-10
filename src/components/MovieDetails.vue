@@ -13,7 +13,9 @@
                     </div>
                 </h1>
                 <div class="box alt image-container" v-if="currentMovie.poster_path">
-                    <span class="image fit"><img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'" :alt="currentMovie.title" /></span>
+                    <div class="image fit">
+                        <img :src="currentMovie.poster_path ? `https://image.tmdb.org/t/p/original/${currentMovie.poster_path}` : '/no-image.png'" :alt="currentMovie.title" />
+                    </div>
                 </div>
                 <p>{{ currentMovie.overview }}</p>
             </header>
