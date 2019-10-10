@@ -140,11 +140,6 @@ body, input, select, textarea {
 }
 
 a {
-  -moz-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  border-bottom: dotted 1px;
   color: #f56a6a;
   text-decoration: none;
 }
@@ -173,7 +168,6 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #3d4449;
-  font-family: "Roboto Slab", serif;
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 1em 0;
@@ -1780,7 +1774,6 @@ section.special, article.special {
 }
 
 header p {
-  font-family: "Roboto Slab", serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0.075em;
@@ -2493,7 +2486,6 @@ button,
   color: #f56a6a !important;
   cursor: pointer;
   display: inline-block;
-  font-family: "Roboto Slab", serif;
   font-size: 0.8em;
   font-weight: 700;
   height: 3.5em;
@@ -3347,8 +3339,9 @@ button:disabled,
 #header .logo {
   border-bottom: 0;
   color: inherit;
-  font-family: "Roboto Slab", serif;
   font-size: 1.125em;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
 }
 
 #header .menu-items {
@@ -3395,7 +3388,6 @@ button:disabled,
   -ms-user-select: none;
   user-select: none;
   color: #3d4449;
-  font-family: "Roboto Slab", serif;
   font-weight: 400;
   letter-spacing: 0.075em;
   list-style: none;

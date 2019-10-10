@@ -1,5 +1,3 @@
-import Home from './components/Home'
-
 const Movies = resolve => {
     require.ensure(['./components/Movies.vue'], () => {
         resolve(require('./components/Movies.vue'));
@@ -20,11 +18,6 @@ const Stats = resolve => {
 
 export const routes = [
     {
-        path: '',
-        component: Home,
-        name: 'home'
-    },
-    {
         path: '/movies',
         component: Movies,
         name: 'movies'
@@ -41,6 +34,6 @@ export const routes = [
     },
     {
         path: '*',
-        redirect: '/'
+        redirect: '/movies'
     }
 ];

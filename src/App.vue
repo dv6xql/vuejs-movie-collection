@@ -14,12 +14,12 @@
 </template>
 
 <script>
-    import Header from "./components/Header";
+    import AppHeader from "./components/AppHeader";
 
     export default {
         name: 'app',
         components: {
-            appHeader : Header,
+            appHeader : AppHeader,
         }
     }
 </script>
