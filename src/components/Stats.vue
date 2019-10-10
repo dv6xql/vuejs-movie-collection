@@ -5,11 +5,11 @@
         </div>
         <div class="items align-center" v-if="Object.keys(topRatedData).length">
             <article>
-                <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average"
+                <BarChart id="chart_1" title="Top Rated Movies" xKey="title" yKey="vote_average"
                           :data="topRatedData"></BarChart>
             </article>
             <article>
-                <BarChart id="chart_2" title="Bar Charts" xKey="title" yKey="vote_average_count"
+                <BarChart id="chart_2" title="Vote / Rating Count" xKey="title" yKey="vote_average_count"
                           :data="topRatedData"></BarChart>
             </article>
         </div>
