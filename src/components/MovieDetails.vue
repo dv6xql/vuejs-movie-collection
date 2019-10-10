@@ -35,7 +35,7 @@
             <div class="title" v-if="Object.keys(similarMovies).length">
                 <h2>Similar movies</h2>
             </div>
-            <div class="movies" v-if="Object.keys(similarMovies).length">
+            <div class="items" v-if="Object.keys(similarMovies).length">
                 <article v-for="movie in similarMovies" :key="`movie-${movie.id}`">
                     <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
                         <a href="#" class="image">

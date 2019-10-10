@@ -15,7 +15,7 @@
                 <input type="text" v-model="search" @keyup.enter="searchMovies(search)" placeholder="What are you looking for?">
             </div>
         </div>
-        <div class="movies">
+        <div class="items">
             <article v-for="movie in movies.results" :key="`movie-${movie.id}`">
                 <router-link :to="{name: 'movieDetails', params: {movieId: movie.id}}">
                     <a href="#" class="image">
