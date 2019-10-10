@@ -1,6 +1,5 @@
 <template>
     <div :id="id" class="svg-container" align="center">
-        <h1>{{ title }}</h1>
         <svg :width="svgWidth" :height="svgHeight">
             <g>
                 <rect
@@ -101,7 +100,7 @@
                         this.$data.redrawToggle = true;
                         this.$data.svgWidth = document.getElementById(this.id).offsetWidth * 0.75;
                         this.animateLoad();
-                    }, 300);
+                    }, 800);
                 });
             }
         }

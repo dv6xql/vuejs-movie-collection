@@ -3,12 +3,12 @@
         <div class="title">
             <h2>Stats</h2>
         </div>
-        <div class="movies">
-            <article v-if="Object.keys(topRatedData).length">
+        <div class="movies" v-if="Object.keys(topRatedData).length">
+            <article>
                 <BarChart id="chart_1" title="Bar Chart" xKey="title" yKey="vote_average" :data="topRatedData"></BarChart>
             </article>
             <article>
-                <BarChart id="chart_2" title="Bar Charts" xKey="name" yKey="amount" :data="barChartDatas"></BarChart>
+                <BarChart id="chart_2" title="Bar Charts" xKey="title" yKey="vote_average_count" :data="topRatedData"></BarChart>
             </article>
         </div>
     </section>
@@ -29,58 +29,24 @@
                     return false;
                 }
 
-                this.topRatedData = (to.results).slice(0, 10);
+                let topRatedData = (to.results).slice(0, 10);
+
+                topRatedData.forEach((movie, key) => {
+                    movie.vote_average_count = movie.vote_average / movie.vote_count;
+                });
+
+                this.topRatedData = topRatedData;
             }
         },
         data() {
             return {
-                topRatedData: [],
-                barChartData: [
-                    {
-                        name: 'Matrix',
-                        amount: 25
-                    },
-                    {
-                        name: 'Lion King',
-                        amount: 40
-                    },
-                    {
-                        name: 'Terminator',
-                        amount: 15
-                    },
-                    {
-                        name: 'Gran Torino',
-                        amount: 21
-                    },
-                ],
-                barChartDatas: [
-                    {
-                        name: 'Matrix',
-                        amount: 54
-                    },
-                    {
-                        name: 'Lion King',
-                        amount: 21
-                    },
-                    {
-                        name: 'Terminator',
-                        amount: 15
-                    },
-                    {
-                        name: 'Gran Torino',
-                        amount: 21
-                    },
-                ]
+                topRatedData: []
             }
         },
         methods: {
             ...mapActions([
                 'getTopRatedMovies',
             ]),
-            collectTopRatedMoviesData(movies) {
-                movies = movies.slice(0, 10);
-                console.log(movies);
-            }
         },
         computed: {
             ...mapGetters([
@@ -90,7 +56,6 @@
         created() {
             this.getTopRatedMovies();
         }
-
     }
 </script>
 
