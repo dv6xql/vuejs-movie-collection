@@ -1,4 +1,4 @@
-# Frontend Task
+# Movie Collection with VueJS and TheMovieDB
 
 Using an existing Movie API (https://www.themoviedb.org/documentation/api) provided by
 The Movie DB, create a website using Vue, Vuex and LESS/SASS with the following
