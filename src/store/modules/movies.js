@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const state = {
     movies: [],
+    topRatedMovies: [],
     currentMovie: [],
     apiKey: 'f5113d82bf25e774efd85825b36c9f09',
     foundMovies: [],
@@ -21,6 +22,9 @@ const getters = {
     },
     movies: state => {
         return state.movies;
+    },
+    topRatedMovies: state => {
+        return state.topRatedMovies;
     },
     currentMovie: state => {
         return state.currentMovie;
@@ -42,6 +46,9 @@ const getters = {
 const mutations = {
     storeMovies: (state, movies) => {
         state.movies = movies;
+    },
+    storeTopRatedMovies: (state, topRatedMovies) => {
+        state.topRatedMovies = topRatedMovies;
     },
     storeCurrentMovie: (state, currentMovie) => {
         state.currentMovie = currentMovie;
@@ -75,6 +82,12 @@ const actions = {
                 commit('storeMovies', response.data);
                 commit('storeCurrentPage', response.data.page);
                 commit('storeTotalPages', response.data.total_pages);
+            });
+    },
+    getTopRatedMovies: ({ state, commit }) => {
+        axios.get(`https://api.themoviedb.org/3/movie/top_rated?&api_key=${state.apiKey}`)
+            .then(response => {
+                commit('storeTopRatedMovies', response.data);
             });
     },
     getMovieDetails: ({state, commit}, movieId) => {
