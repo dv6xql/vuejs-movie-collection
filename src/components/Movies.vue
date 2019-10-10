@@ -5,7 +5,7 @@
         </header>
         <div class="content">
             <ul class="actions">
-                <li v-for="(option, key) in sortByOptions">
+                <li v-for="(option, key) in sortByOptions" :key="`sort-by-${key}`">
                     <button type="button" class="button small" :class="{'primary': sortBy === key}" @click.prevent="sortBy = key; getMovies({'sortBy': key, 'page': 1})" :disabled="search.length >= 1">{{ option }}</button>
                 </li>
             </ul>
@@ -37,7 +37,7 @@
                 <li>
                     <button class="button" :class="{'disabled': currentPage <= 1}" @click.prevent="getMovies({'sortBy': sortBy, 'page': currentPage - 1})" :disabled="currentPage <= 1">Previous</button>
                 </li>
-                <li v-for="page in pages">
+                <li v-for="page in pages" :key="`page-${page}`">
                     <a href="#" class="page" :class="{'active': page === currentPage}" @click.prevent="getMovies({'sortBy': sortBy, 'page': page})">{{ page }}</a>
                 </li>
                 <li>
