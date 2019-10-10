@@ -1788,7 +1788,7 @@ header p {
   text-transform: uppercase;
 }
 
-header.title > :last-child {
+div.title > :last-child {
   border-bottom: solid 3px #f56a6a;
   display: inline-block;
   margin: 0 0 2em 0;
@@ -3372,14 +3372,6 @@ button:disabled,
   #header .logo {
     font-size: 1.25em;
     margin: 0;
-  }
-
-  #header .menu-items {
-    height: 5em;
-    line-height: 5em;
-    position: absolute;
-    right: -0.5em;
-    top: 0;
   }
 
 }
