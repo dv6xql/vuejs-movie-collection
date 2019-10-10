@@ -1,11 +1,12 @@
 <template>
-    <div id="container" class="svg-container" align="center">
+    <div :id="id" class="svg-container" align="center">
         <h1>{{ title }}</h1>
         <svg :width="svgWidth" :height="svgHeight">
             <g>
                 <rect
                         v-for="item in data"
                         class="bar-positive"
+                        :class="id"
                         :key="item[xKey]"
                         :x="xScale(item[xKey])"
                         :y="yScale(0)"
@@ -26,6 +27,7 @@
     export default {
         name: "BarChart",
         props: {
+            id: String,
             title: String,
             xKey: String,
             yKey: String,
@@ -33,7 +35,7 @@
         },
         watch: {
             svgWidth() {
-                this.svgWidth = document.getElementById("container").offsetWidth * 0.75;
+                this.svgWidth = document.getElementById(this.id).offsetWidth * 0.75;
             }
         },
         computed: {
@@ -65,7 +67,7 @@
             }
         },
         mounted() {
-            this.svgWidth = document.getElementById("container").offsetWidth * 0.95;
+            this.svgWidth = document.getElementById(this.id).offsetWidth * 0.95;
             this.addResizeListener();
             this.animateLoad();
         },
@@ -78,7 +80,7 @@
         methods: {
             animateLoad() {
                 transition();
-                selectAll("rect")
+                selectAll(`rect.${this.id}`)
                     .data(this.data)
                     .transition()
                     .delay((d, i) => {
@@ -97,7 +99,7 @@
                     this.$data.redrawToggle = false;
                     setTimeout(() => {
                         this.$data.redrawToggle = true;
-                        this.$data.svgWidth = document.getElementById("container").offsetWidth * 0.75;
+                        this.$data.svgWidth = document.getElementById(this.id).offsetWidth * 0.75;
                         this.animateLoad();
                     }, 300);
                 });
