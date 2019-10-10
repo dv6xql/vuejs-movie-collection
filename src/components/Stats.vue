@@ -31,7 +31,7 @@
 
                 let topRatedData = (to.results).slice(0, 10);
 
-                topRatedData.forEach((movie, key) => {
+                topRatedData.forEach((movie) => {
                     movie.vote_average_count = movie.vote_average / movie.vote_count;
                 });
 
