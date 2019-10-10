@@ -1,17 +1,15 @@
 <template>
-    <div :id="id" class="svg-container" align="center">
+    <div :id="id">
         <svg :width="svgWidth" :height="svgHeight">
             <g>
                 <rect
-                        v-for="item in data"
-                        class="bar-positive"
-                        :class="id"
+                        v-for="(item, index) in data"
+                        :class="`${id} bar-${index + 1}`"
                         :key="item[xKey]"
                         :x="xScale(item[xKey])"
                         :y="yScale(0)"
                         :width="xScale.bandwidth()"
-                        :height="0"
-                >
+                        :height="0">
                 </rect>
             </g>
         </svg>
@@ -73,7 +71,10 @@
         data() {
             return {
                 svgWidth: 0,
-                redrawToggle: true
+                redrawToggle: true,
+                colors: [
+
+                ]
             }
         },
         methods: {
@@ -108,17 +109,44 @@
 </script>
 
 <style scoped>
-    .bar-positive {
-        fill: steelblue;
+    .bar-1 {
+        fill: #2196f3;
         transition: r 0.2s ease-in-out;
     }
-
-    .svg-container {
-        display: inline-block;
-        position: relative;
-        width: 100%;
-        padding-bottom: 1%;
-        vertical-align: top;
-        overflow: hidden;
+    .bar-2 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-3 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-4 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-5 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-6 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-7 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-8 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-9 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
+    }
+    .bar-10 {
+        fill: #2196f3;
+        transition: r 0.2s ease-in-out;
     }
 </style>
