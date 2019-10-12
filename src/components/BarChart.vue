@@ -82,15 +82,6 @@
             }
         },
         methods: {
-            totalWidth() {
-                let width = 0;
-
-                this.data.forEach((item, index) => {
-                    width += this.xScale.bandwidth();
-                });
-
-                return width - 80;
-            },
             animateLoad() {
                 transition();
                 selectAll(`rect.${this.id}`)
