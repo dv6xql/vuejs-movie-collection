@@ -1,7 +1,7 @@
 <template>
     <div :id="id">
         <h2>{{ title }}</h2>
-        <svg :width="svgWidth" :height="svgHeight">
+        <svg :id="`${id}-chart`" :width="svgWidth" :height="svgHeight">
             <g>
                 <rect v-for="(item, index) in data"
                       :class="`${id} bar-${index + 1}`"
@@ -12,6 +12,12 @@
                       :height="0">
                 </rect>
             </g>
+            <g transform="translate(0,50)" fill="none" font-size="0.71em" font-family="sans-serif" text-anchor="middle">
+                <g class="tick" opacity="1" :transform="`translate(${xScale(item[xKey])}, 50)rotate(-90)`" v-for="(item) in data" :key="`x-${item[xKey]}`">
+                    <line stroke="#000" y2="6" ></line>
+                    <text fill="#000" y="9" dy="0.71em">{{ item[xKey] }} ({{ item[yKey] }})</text>
+                </g>
+            </g>
         </svg>
     </div>
 </template>
@@ -21,7 +27,6 @@
     import {max, min} from 'd3-array';
     import {selectAll} from 'd3-selection';
     import {transition} from 'd3-transition'
-
     export default {
         name: "BarChart",
         props: {
