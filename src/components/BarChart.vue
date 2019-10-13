@@ -13,8 +13,7 @@
                 </rect>
             </g>
             <g transform="translate(0,50)" fill="none" font-size="0.71em" font-family="sans-serif" text-anchor="middle">
-<!--                <path class="domain" stroke="currentColor" d="M20.5,6V0.5H410.5V6"></path>-->
-                <g class="tick" opacity="1" :transform="`translate(${xScale(item[xKey])}, 50)rotate(-90)`" v-for="(item, index) in data" :key="`x-${item[xKey]}`">
+                <g class="tick" opacity="1" :transform="`translate(${xScale(item[xKey])}, 50)rotate(-90)`" v-for="(item) in data" :key="`x-${item[xKey]}`">
                     <line stroke="#000" y2="6" ></line>
                     <text fill="#000" y="9" dy="0.71em">{{ item[xKey] }} ({{ item[yKey] }})</text>
                 </g>
